@@ -34,39 +34,33 @@ public:
 };
 
 
-
-// Problem: Maximum Size Subarray Sum Equals k
-// Link: https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
+// Problem: Subarray Sum Equals K
+// Link: https://leetcode.com/problems/subarray-sum-equals-k/
 // Difficulty: Medium
-// Approach: Prefix Sum + HashMap — store first occurrence of each prefix sum,
-//           if (currentSum - k) exists, update max length.
+// Approach: Prefix Sum + HashMap — store frequency of prefix sums,
+//           if (sum - k) exists, add its frequency to count.
 // Time: O(n) | Space: O(n)
 
 class Solution {
 public:
-    int maxSubArrayLen(vector<int>& nums, int k) {
+    int subarraySum(vector<int>& nums, int k) {
         
-        unordered_map<int, int> mp; // prefixSum -> index
+        unordered_map<int, int> mp;
+        mp[0] = 1;
+
         int sum = 0;
-        int maxi = 0;
+        int count = 0;
 
-        for (int i = 0; i < nums.size(); i++) {
-            sum += nums[i];
-
-            if (sum == k) {
-                maxi = i + 1;
-            }
+        for (int num : nums) {
+            sum += num;
 
             if (mp.find(sum - k) != mp.end()) {
-                maxi = max(maxi, i - mp[sum - k]);
+                count += mp[sum - k];
             }
 
-            // store first occurrence only
-            if (mp.find(sum) == mp.end()) {
-                mp[sum] = i;
-            }
+            mp[sum]++;
         }
 
-        return maxi;
+        return count;
     }
 };
