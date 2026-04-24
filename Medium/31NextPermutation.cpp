@@ -1,34 +1,36 @@
 // Problem: Next Permutation
-// Link: https://leetcode.com/problems/next-permutation/
-// Difficulty: Medium
-// Approach:
-// 1. Find the first decreasing element from right (pivot)
-// 2. Find just greater element than pivot from right
-// 3. Swap them
-// 4. Reverse the suffix
+// Approach: Pivot + Swap + Reverse
 // Time: O(n) | Space: O(1)
 
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
         int n = nums.size();
-        int i = n - 2;
+        int pivot = -1;
 
-        // 🔹 Step 1: Find pivot
-        while (i >= 0 && nums[i] >= nums[i + 1]) {
-            i--;
-        }
-
-        // 🔹 Step 2: Find next greater element
-        if (i >= 0) {
-            int j = n - 1;
-            while (nums[j] <= nums[i]) {
-                j--;
+        // 🔹 Step 1: Find pivot (first decreasing from right)
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                pivot = i;
+                break;
             }
-            swap(nums[i], nums[j]);
         }
 
-        // 🔹 Step 3: Reverse suffix
-        reverse(nums.begin() + i + 1, nums.end());
+        // 🔹 Step 2: If no pivot → reverse whole array
+        if (pivot == -1) {
+            reverse(nums.begin(), nums.end());
+            return;
+        }
+
+        // 🔹 Step 3: Find next greater element from right
+        for (int i = n - 1; i > pivot; i--) {
+            if (nums[i] > nums[pivot]) {
+                swap(nums[i], nums[pivot]);
+                break;
+            }
+        }
+
+        // 🔹 Step 4: Reverse suffix
+        reverse(nums.begin() + pivot + 1, nums.end());
     }
 };
