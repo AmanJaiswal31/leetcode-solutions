@@ -48,8 +48,8 @@ Check [`daily-log.md`](./daily-log.md) for day by day progress.
 
 ## 🛠️ Language Used
 
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
-
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-003B57?style=for-the-badge&logo=database&logoColor=white)
 ---
 
 ## 🔗 My LeetCode Profile
