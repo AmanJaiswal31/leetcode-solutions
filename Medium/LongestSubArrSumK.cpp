@@ -34,33 +34,3 @@ public:
 };
 
 
-// Problem: Subarray Sum Equals K
-// Link: https://leetcode.com/problems/subarray-sum-equals-k/
-// Difficulty: Medium
-// Approach: Prefix Sum + HashMap — store frequency of prefix sums,
-//           if (sum - k) exists, add its frequency to count.
-// Time: O(n) | Space: O(n)
-
-class Solution {
-public:
-    int subarraySum(vector<int>& nums, int k) {
-        
-        unordered_map<int, int> mp;
-        mp[0] = 1;
-
-        int sum = 0;
-        int count = 0;
-
-        for (int num : nums) {
-            sum += num;
-
-            if (mp.find(sum - k) != mp.end()) {
-                count += mp[sum - k];
-            }
-
-            mp[sum]++;
-        }
-
-        return count;
-    }
-};
