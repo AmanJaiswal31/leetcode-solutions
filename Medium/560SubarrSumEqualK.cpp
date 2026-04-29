@@ -28,7 +28,7 @@ if(m.find(val) != m.end()){
 }
 
 
-if (m.find(val) == m.end()){
+ 
 m[PrefixSum[j]] = 0;
 }
 
