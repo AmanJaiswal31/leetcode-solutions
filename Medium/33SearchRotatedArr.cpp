@@ -6,7 +6,7 @@
 
 class Solution {
 public:
-    int search(vector<int>& A, int tar) {
+    int search( vector<int>& A, int tar) {
         int st = 0, end = A.size() - 1;
 
         while (st <= end) {
