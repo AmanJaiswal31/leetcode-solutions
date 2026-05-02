@@ -7,23 +7,30 @@
 class Solution {
 public:
     int peakIndexInMountainArray(vector<int>& arr) {
-        int st = 0, end = arr.size() - 1;
+        int st = 1, end = arr.size() - 2;
 
         // Binary search to find peak element
-        while (st < end) {
+        while (st <= end) {
             int mid = st + (end - st) / 2;
 
             // If mid is less than next element → we are in increasing slope
-            if (arr[mid] < arr[mid + 1]) {
-                st = mid + 1;   // move right
-            } 
+            if (arr[mid-1] < arr[mid] && arr[mid + 1]< arr[mid ]) {
+return mid;
+            }
+            else if (arr[mid-1] < arr[mid]){
+                  st = mid + 1;   // move right
+
+            }
+
+
+              
+            
             // Else we are in decreasing slope or at peak
             else {
-                end = mid;      // keep mid (could be peak)
+                end = mid-1;      // keep mid (could be peak)
             }
         }
 
-        // st == end → peak index
-        return st;
+         return -1;
     }
 };
